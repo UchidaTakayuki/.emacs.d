@@ -8,6 +8,9 @@
 (set-default-coding-systems' utf-8)
 (prefer-coding-system 'utf-8)
 
+;; show line number
+(global-display-line-numbers-mode)
+
 ;; Do not display startup message
 (setq inhibit-startup-message t)
 
@@ -19,11 +22,6 @@
 
 ;; use spaces in tabs
 (setq-default tab-width 4 indent-tabs-mode nil)
-
-;; Display line feed code
-(setq eol-mnemonic-dos "(CRLF)")
-(setq eol-mnemonic-mac "(CR)")
-(setq eol-mnemonic-unix "(LF)")
 
 ;; make window transparent
 ;; Active window / Inactive window (alpha value specifies transparency)
@@ -37,9 +35,6 @@
 
 ;; display the number of columns
 (column-number-mode t)
-
-;; show number of lines
-(global-linum-mode t)
 
 ;; Stop blinking the cursor
 (blink-cursor-mode 0)
@@ -75,8 +70,8 @@
 (evil-mode 1)
 
 ;; color theme setting
-(straight-use-package 'nord-theme)
-(load-theme 'nord t)
+(straight-use-package 'monokai-theme)
+(load-theme 'monokai t)
 
 ;; all-the-icons.el setting
 (straight-use-package 'all-the-icons)
