@@ -1,13 +1,3 @@
-;; Set the environment to Japanese, UTF-8
-(set-locale-environment nil)
-(set-language-environment "Japanese")
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
-(set-default-coding-systems' utf-8)
-(prefer-coding-system 'utf-8)
-
 ;; show line number
 (global-display-line-numbers-mode)
 
@@ -46,7 +36,7 @@
 (show-paren-mode 1)
 
 ;; Visualize spaces, tabs, etc.
-(global-whitespace-mode 1)
+;; (global-whitespace-mode 1)
 
 ;; scroll line by line
 (setq scroll-conservatively 1)
@@ -66,12 +56,31 @@
   (load bootstrap-file nil 'nomessage))
 
 ;; evil.el setting
-(straight-use-package 'evil)
-(evil-mode 1)
+;; (straight-use-package 'evil)
+;; (evil-mode 1)
 
 ;; color theme setting
-(straight-use-package 'monokai-theme)
-(load-theme 'monokai t)
+(straight-use-package 'madhat2r-theme)
+(load-theme 'madhat2r t)
 
 ;; all-the-icons.el setting
 (straight-use-package 'all-the-icons)
+
+;; bind-key setting
+(straight-use-package 'bind-key)
+
+;; character setting
+;; add to 
+;; need packege [emacs-mozc-bin],[emacs-mozc-bin]
+(straight-use-package 'mozc)
+(set-locale-environment nil)
+(set-language-environment "Japanese")
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-input-method "japanese-mozc")
+(setq mozc-candidate-style 'overlay)
+(global-set-key [?\C-\ ] 'toggle-input-method)
