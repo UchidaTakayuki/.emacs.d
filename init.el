@@ -35,9 +35,6 @@
 ;; flash the corresponding parenthesis
 (show-paren-mode 1)
 
-;; Visualize spaces, tabs, etc.
-;; (global-whitespace-mode 1)
-
 ;; scroll line by line
 (setq scroll-conservatively 1)
 
@@ -84,3 +81,9 @@
 (setq default-input-method "japanese-mozc")
 (setq mozc-candidate-style 'overlay)
 (global-set-key [?\C-\ ] 'toggle-input-method)
+
+;; indent guid setting
+(straight-use-package 'indent-guide)
+(indent-guide-global-mode)
+(set-face-foreground 'indent-guide-face "cyan")
+(setq indent-guide-recursive t)
