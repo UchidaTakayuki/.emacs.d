@@ -1,6 +1,10 @@
 ;; show line number
 (global-display-line-numbers-mode)
 
+;; trancate setting
+(setq-default truncate-lines t)
+(setq-default truncate-partial-width-windows t)
+
 ;; Do not display startup message
 (setq inhibit-startup-message t)
 
@@ -91,3 +95,25 @@
 (set-face-foreground 'indent-guide-face "cyan")
 (setq indent-guide-recursive t)
 
+(defmacro with-suppressed-message (&rest body)
+  "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+  (declare (indent 0))
+  (let ((message-log-max nil))
+    `(with-temp-message (or (current-message) "") ,@body)))
+
+;; recentf setting
+(require 'recentf)
+(straight-use-package 'recentf-ext)
+(when (require 'recentf-ext nil t)
+  (setq recentf-max-saved-items 2000)
+  (setq recentf-exclude '("~/.emacs.d/.recentf"))
+  (setq recentf-auto-cleanup 10)
+  (setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
+  (recentf-mode 1))
+
+(setq inhibit-startup-message t)
+(add-hook 'after-init-hook (lambda()
+    (recentf-open-files)
+    ))
+
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
