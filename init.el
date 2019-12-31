@@ -17,6 +17,10 @@
 ;; use spaces in tabs
 (setq-default tab-width 4 indent-tabs-mode nil)
 
+;; window move key setting
+(setq windmove-wrap-around t)
+(windmove-default-keybindings)
+
 ;; make window transparent
 ;; Active window / Inactive window (alpha value specifies transparency)
 (add-to-list 'default-frame-alist' (alpha. (0.85 0.85)))
@@ -49,7 +53,7 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
+       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
