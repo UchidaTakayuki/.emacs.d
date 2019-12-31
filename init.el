@@ -23,6 +23,9 @@
 ;; Remove toolbar
 (tool-bar-mode -1)
 
+;; Rmove scrollbar
+(scroll-bar-mode -1)
+
 ;; display the number of columns
 (column-number-mode t)
 
@@ -87,3 +90,4 @@
 (indent-guide-global-mode)
 (set-face-foreground 'indent-guide-face "cyan")
 (setq indent-guide-recursive t)
+
