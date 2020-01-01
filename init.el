@@ -142,3 +142,14 @@
 (straight-use-package 'diminish)
 (column-number-mode t)
 (line-number-mode t)
+
+;; which-key setting
+(straight-use-package 'which-key)
+(which-key-mode)
+
+;; multiple-cursors setting
+(straight-use-package 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
