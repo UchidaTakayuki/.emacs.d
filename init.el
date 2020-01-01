@@ -153,3 +153,11 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; defun delete line
+(defun delete-current-line ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line)
+  (kill-line))
+(global-set-key (kbd "M-k") 'delete-current-line)
