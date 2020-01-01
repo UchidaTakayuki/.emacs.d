@@ -121,3 +121,7 @@
     ))
 
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+;; duplicate-thing setting
+(straight-use-package 'duplicate-thing)
+(bind-key "M-c" 'duplicate-thing)
