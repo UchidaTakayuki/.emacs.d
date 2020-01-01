@@ -161,3 +161,9 @@
   (kill-line)
   (kill-line))
 (global-set-key (kbd "M-k") 'delete-current-line)
+
+;; window resize change key bind
+(global-set-key (kbd "M-=") 'enlarge-window-horizontally)
+(global-set-key (kbd "M--") 'shrink-window-horizontally)
+(global-set-key (kbd "C-=") 'enlarge-window)
+(global-set-key (kbd "C--") 'shrink-window)
