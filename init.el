@@ -181,3 +181,9 @@
 (global-git-gutter-mode +1)
 (custom-set-variables
  '(git-gutter:update-interval 2))
+
+;; aspell setting
+(require 'ispell)
+(setq ispell-program-name "aspell")
+(eval-after-load "ispell"
+  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
