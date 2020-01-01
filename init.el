@@ -1,6 +1,10 @@
 ;; show line number
 (global-display-line-numbers-mode)
 
+;; not create backup file setting
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
 ;; trancate setting
 (setq-default truncate-lines t)
 (setq-default truncate-partial-width-windows t)
@@ -27,6 +31,9 @@
 
 ;; Remove the menu bar
 (menu-bar-mode -1)
+
+;; mouse setting
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
 
 ;; Remove toolbar
 (tool-bar-mode -1)
@@ -125,3 +132,13 @@
 ;; duplicate-thing setting
 (straight-use-package 'duplicate-thing)
 (bind-key "M-c" 'duplicate-thing)
+
+;; mode line setting
+(straight-use-package 'smart-mode-line)
+(defvar sml/no-confirm-load-theme t)
+(defvar sml/theme 'dark)
+(defvar sml/shorten-directory -1)
+(sml/setup)
+(straight-use-package 'diminish)
+(column-number-mode t)
+(line-number-mode t)
