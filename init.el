@@ -167,3 +167,10 @@
 (global-set-key (kbd "M--") 'shrink-window-horizontally)
 (global-set-key (kbd "C-=") 'enlarge-window)
 (global-set-key (kbd "C--") 'shrink-window)
+
+;; company setting
+(straight-use-package 'company)
+(global-company-mode)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
