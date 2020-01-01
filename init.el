@@ -69,6 +69,7 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
 
 ;; evil.el setting
 ;; (straight-use-package 'evil)
@@ -174,3 +175,9 @@
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
+
+;; git-gitter setting
+(straight-use-package 'git-gutter)
+(global-git-gutter-mode +1)
+(custom-set-variables
+ '(git-gutter:update-interval 2))
