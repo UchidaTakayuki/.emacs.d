@@ -124,9 +124,6 @@
   (recentf-mode 1))
 
 (setq inhibit-startup-message t)
-(add-hook 'after-init-hook (lambda()
-    (recentf-open-files)
-    ))
 
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
@@ -210,3 +207,67 @@
       '((tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
 
 (global-whitespace-mode 1)
+
+;; tab setting
+(straight-use-package 'tabbar)
+(tabbar-mode)
+(tabbar-mwheel-mode nil)
+(setq tabbar-buffer-groups-function nil)
+(setq tabbar-use-images nil)
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-z C-n") 'tabbar-forward-tab)
+(global-set-key (kbd "C-z C-p") 'tabbar-backward-tab)
+
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+(setq tabbar-separator '(2.0))
+
+(when window-system                       ; GUI時
+  ;; 外観変更
+  (set-face-attribute
+   'tabbar-default nil
+   :family "MeiryoKe_Gothic"
+   :background "#34495E"
+   :foreground "#EEEEEE"
+   :height 0.85
+   )
+  (set-face-attribute
+   'tabbar-unselected nil
+   :background "#34495E"
+   :foreground "#EEEEEE"
+   :box nil
+  )
+  (set-face-attribute
+   'tabbar-modified nil
+   :background "#E67E22"
+   :foreground "#EEEEEE"
+   :box nil
+  )
+  (set-face-attribute
+   'tabbar-selected nil
+   :background "#E74C3C"
+   :foreground "#EEEEEE"
+   :box nil)
+  (set-face-attribute
+   'tabbar-button nil
+   :box nil)
+  (set-face-attribute
+   'tabbar-separator nil
+   :height 2.0)
+)
+(put 'set-goal-column 'disabled nil)
+(defun my-tabbar-buffer-list ()
+  (delq nil
+        (mapcar #'(lambda (b)
+                    (cond
+                     ((eq (current-buffer) b) b)
+                     ((equal "*scratch*" (buffer-name b)) b)
+                     ((buffer-file-name b) b)
+                     ((char-equal ?\  (aref (buffer-name b) 0)) nil)
+                     ((char-equal ?* (aref (buffer-name b) 0)) nil)
+                     ((buffer-live-p b) b)))
+                (buffer-list))))
+(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
