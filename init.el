@@ -202,3 +202,18 @@
 (projectile-mode +1)
 (setq dired-sidebar-use-term-integration t)
 (setq dired-sidebar-use-custom-font t)
+
+;; whitespace setting
+(require 'whitespace)
+(setq whitespace-style '(
+    face
+    trailing
+    tabs
+    space-mark
+    tab-mark
+))
+
+(setq whitespace-display-mappings
+      '((tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+
+(global-whitespace-mode 1)
