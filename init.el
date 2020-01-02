@@ -195,3 +195,10 @@
 (straight-use-package 'dired-sidebar)
 (bind-key "C-q" 'dired-sidebar-toggle-sidebar)
 (setq dired-sidebar-theme 'vscode)
+
+;; projectile setting
+(straight-use-package 'projectile)
+(bind-key "M-p" 'projectile-switch-project)
+(projectile-mode +1)
+(setq dired-sidebar-use-term-integration t)
+(setq dired-sidebar-use-custom-font t)
