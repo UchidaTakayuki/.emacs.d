@@ -79,9 +79,6 @@
 (straight-use-package 'madhat2r-theme)
 (load-theme 'madhat2r t)
 
-;; all-the-icons.el setting
-(straight-use-package 'all-the-icons)
-
 ;; bind-key setting
 (straight-use-package 'bind-key)
 
@@ -275,3 +272,21 @@
 ;; treemacs setting
 (straight-use-package 'treemacs)
 (use-package treemacs)
+
+;; paren setting
+(use-package paren
+   :ensure nil
+   :hook
+   (after-init . show-paren-mode)
+   :custom-face
+   (show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c"))))
+   :custom
+   (show-paren-style 'mixed)
+   (show-paren-when-point-inside-paren t)
+   (show-paren-when-point-in-periphery t))
+
+;; rainbow-deliters setting
+(straight-use-package 'rainbow-delimiters)
+(use-package rainbow-delimiters
+   :hook
+   (prog-mode . rainbow-delimiters-mode))
