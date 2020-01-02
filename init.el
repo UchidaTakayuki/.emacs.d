@@ -187,3 +187,11 @@
 (setq ispell-program-name "aspell")
 (eval-after-load "ispell"
   '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
+;; icons setting
+(straight-use-package 'vscode-icon)
+
+;; dired-sidebar setting
+(straight-use-package 'dired-sidebar)
+(bind-key "C-q" 'dired-sidebar-toggle-sidebar)
+(setq dired-sidebar-theme 'vscode)
