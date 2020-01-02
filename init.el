@@ -188,10 +188,6 @@
 ;; icons setting
 (straight-use-package 'vscode-icon)
 
-;; dired-sidebar setting
-(straight-use-package 'dired-sidebar)
-(bind-key "C-q" 'dired-sidebar-toggle-sidebar)
-(setq dired-sidebar-theme 'vscode)
 
 ;; whitespace setting
 (require 'whitespace)
@@ -271,3 +267,7 @@
                      ((buffer-live-p b) b)))
                 (buffer-list))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
+;; treemacs setting
+(straight-use-package 'treemacs)
+(use-package treemacs)
