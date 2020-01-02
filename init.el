@@ -166,12 +166,20 @@
 (global-set-key (kbd "C-=") 'enlarge-window)
 (global-set-key (kbd "C--") 'shrink-window)
 
+;; icons setting
+(straight-use-package 'all-the-icons)
+
 ;; company setting
 (straight-use-package 'company)
 (global-company-mode)
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
+
+;; company-box setting
+(straight-use-package 'company-box)
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;; git-gitter setting
 (straight-use-package 'git-gutter)
@@ -184,10 +192,6 @@
 (setq ispell-program-name "aspell")
 (eval-after-load "ispell"
   '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
-
-;; icons setting
-(straight-use-package 'vscode-icon)
-
 
 ;; whitespace setting
 (require 'whitespace)
