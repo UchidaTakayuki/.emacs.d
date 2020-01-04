@@ -300,3 +300,25 @@
 (straight-use-package 'undo-tree)
 (use-package undo-tree)
 (global-undo-tree-mode)
+
+;; icons setting
+(straight-use-package 'all-the-icons)
+(use-package all-the-icons)
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+(setq all-the-icons-color-icons t)
+(setq all-the-icons-icon-for-buffer t)
+(setq all-the-icons-icon-for-dir t)
+(setq all-the-icons-icon-for-file t)
+(setq all-the-icons-icon-for-mode t)
+(setq all-the-icons-icon-for-url t)
+(setq all-the-icons-icon-for-weather t)
+(setq all-the-icons-scale-factor 0.9)
+
+;; dashboard setting
+(straight-use-package 'dashboard)
+(use-package dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(dashboard-modify-heading-icons '((recents . "file-text")
+                                  (bookmarks . "book")))
