@@ -295,3 +295,8 @@
 (use-package undohist)
 (undohist-initialize)
 (setq undohist-directory "~/.emacs.d/undohist")
+
+;; undo-tree setting
+(straight-use-package 'undo-tree)
+(use-package undo-tree)
+(global-undo-tree-mode)
