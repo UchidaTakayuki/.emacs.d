@@ -312,18 +312,31 @@
 
 ;; dashboard setting
 (straight-use-package 'dashboard)
-(use-package dashboard)
-(dashboard-setup-startup-hook)
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-(setq dashboard-set-navigator t)
-(setq dashboard-set-footer nil)
+(use-package dashboard
+    :diminish
+    (dashboard-mode page-break-lines-mode)
+    :custom
+    (dashboard-items '((recents . 15)
+               (projects . 5)
+               (bookmarks . 5)))
+    :hook
+    (after-init . dashboard-setup-startup-hook)
+    :config
+)
+
+;; projectile setting
+(straight-use-package 'projectile)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; neotree setting
 (straight-use-package 'neotree)
 (use-package neotree
   :init
   (setq-default neo-keymap-style 'concise)
+  :after
+  projectile
   :config
   (setq neo-smart-open t)
   (setq neo-create-file-auto-open t)
@@ -331,6 +344,6 @@
   (bind-key "C-q" 'neotree-toggle)
   (bind-key "C-c d" 'neotree-delete-node)
   (bind-key "C-c n" 'neotree-create-node)
-  (bind-key "C-c r" 'neotree-rename-node)
+  (bind-key "\C-c r" 'neotree-rename-node)
   (bind-key "a" 'neotree-hidden-file-toggle neotree-mode-map))
 (add-hook 'neo-after-create-hook (lambda (&optional dummy) (display-line-numbers-mode -1)))
