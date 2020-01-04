@@ -304,15 +304,11 @@
 ;; icons setting
 (straight-use-package 'all-the-icons)
 (use-package all-the-icons)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-(setq all-the-icons-color-icons t)
-(setq all-the-icons-icon-for-buffer t)
-(setq all-the-icons-icon-for-dir t)
-(setq all-the-icons-icon-for-file t)
-(setq all-the-icons-icon-for-mode t)
-(setq all-the-icons-icon-for-url t)
-(setq all-the-icons-icon-for-weather t)
-(setq all-the-icons-scale-factor 0.9)
+
+;; page-break-lines setting
+(straight-use-package 'page-break-lines)
+(use-package page-break-lines)
+(turn-on-page-break-lines-mode)
 
 ;; dashboard setting
 (straight-use-package 'dashboard)
@@ -320,5 +316,21 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
-(dashboard-modify-heading-icons '((recents . "file-text")
-                                  (bookmarks . "book")))
+(setq dashboard-set-navigator t)
+(setq dashboard-set-footer nil)
+
+;; neotree setting
+(straight-use-package 'neotree)
+(use-package neotree
+  :init
+  (setq-default neo-keymap-style 'concise)
+  :config
+  (setq neo-smart-open t)
+  (setq neo-create-file-auto-open t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (bind-key "C-q" 'neotree-toggle)
+  (bind-key "C-c d" 'neotree-delete-node)
+  (bind-key "C-c n" 'neotree-create-node)
+  (bind-key "C-c r" 'neotree-rename-node)
+  (bind-key "a" 'neotree-hidden-file-toggle neotree-mode-map))
+(add-hook 'neo-after-create-hook (lambda (&optional dummy) (display-line-numbers-mode -1)))
