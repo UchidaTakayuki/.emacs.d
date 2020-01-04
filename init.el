@@ -42,7 +42,7 @@
 ;; Rmove scrollbar
 (scroll-bar-mode -1)
 
-;; display the number of columns
+;; displayN the number of columns
 (column-number-mode t)
 
 ;; Stop blinking the cursor
@@ -170,9 +170,23 @@
 ;; company setting
 (straight-use-package 'company)
 (global-company-mode)
+(global-company-mode)
+(setq company-transformers '(company-sort-by-backend-importance))
 (setq company-idle-delay 0)
-(setq company-minimum-prefix-length 2)
+(setq company-minimum-prefix-length 3)
 (setq company-selection-wrap-around t)
+(setq completion-ignore-case t)
+(setq company-dabbrev-downcase nil)
+(global-set-key (kbd "C-M-i") 'company-complete)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-select-next)
+(define-key company-search-map (kbd "C-p") 'company-select-previous)
+(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+(define-key company-active-map (kbd "C-i") 'company-complete-selection)
+(define-key company-active-map [tab] 'company-complete-selection)
+(define-key company-active-map (kbd "C-f") 'company-complete-selection)
+(define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
 
 ;; company-box setting
 (straight-use-package 'company-box)
@@ -320,7 +334,6 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(setq projectile-project-search-path '("~/.emacs.d/projects/"))
 
 ;; dashboard setting
 (straight-use-package 'dashboard)
@@ -353,3 +366,30 @@
   (bind-key "\C-c r" 'neotree-rename-node)
   (bind-key "a" 'neotree-hidden-file-toggle neotree-mode-map))
 (add-hook 'neo-after-create-hook (lambda (&optional dummy) (display-line-numbers-mode -1)))
+
+;; swiper setting
+(straight-use-package 'swiper)
+(use-package swiper)
+(global-set-key "\C-s" 'swiper)
+(setq swiper-include-line-number-in-search t)
+
+;; ivy setting
+(straight-use-package 'ivy)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(setq ivy-height 30)
+(setq ivy-extra-directories nil)
+(setq ivy-re-builders-alist
+      '((t . ivy--regex-plus)))
+
+;; ivy-rich setting
+(straight-use-package 'ivy-rich)
+(use-package ivy-rich)
+
+;; counsel setting
+(straight-use-package 'counsel)
+(counsel-mode 1)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
