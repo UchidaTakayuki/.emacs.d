@@ -1,5 +1,6 @@
 ;; show line number
-(global-display-line-numbers-mode)
+(global-display-line-numbers-mode 1)
+(custom-set-variables '(display-line-numbers-width-start t))
 
 ;; not create backup file setting
 (setq make-backup-files nil)
@@ -328,12 +329,12 @@
     (dashboard-mode page-break-lines-mode)
     :custom
     (dashboard-items '((recents . 15)
-               (projects . 5)
-               (bookmarks . 5)))
+               (projects . 5)))
     :hook
     (after-init . dashboard-setup-startup-hook)
     :config
-)
+    )
+(add-hook 'dashboard-mode-hook (lambda (&optional dummy) (display-line-numbers-mode -1)))
 
 ;; neotree setting
 (straight-use-package 'neotree)
