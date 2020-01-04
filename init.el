@@ -222,8 +222,7 @@
                  (cons "" nil))))
 (setq tabbar-separator '(2.0))
 
-(when window-system                       ; GUI時
-  ;; 外観変更
+(when window-system
   (set-face-attribute
    'tabbar-default nil
    :family "MeiryoKe_Gothic"
@@ -290,3 +289,9 @@
 (use-package rainbow-delimiters
    :hook
    (prog-mode . rainbow-delimiters-mode))
+
+;; undohist setting
+(straight-use-package 'undohist)
+(use-package undohist)
+(undohist-initialize)
+(setq undohist-directory "~/.emacs.d/undohist")
