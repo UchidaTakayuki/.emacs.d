@@ -185,11 +185,15 @@
  '(git-gutter:update-interval 2))
 
 ;; aspell setting
-(require 'ispell)
-(setq ispell-program-name "aspell")
+(setq-default ispell-program-name "aspell")
 (eval-after-load "ispell"
-  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
-
+ '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+(straight-use-package 'flyspell)
+(use-package flyspell
+  :hook ((prog-mode . flyspell-prog-mode)
+         (yatex-mode . flyspell-mode)
+         (org-mode . flyspell-mode)
+         (text-mode . flyspell-mode)))
 ;; whitespace setting
 (require 'whitespace)
 (setq whitespace-style '(
@@ -310,6 +314,13 @@
 (use-package page-break-lines)
 (turn-on-page-break-lines-mode)
 
+;; projectile setting
+(straight-use-package 'projectile)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq projectile-project-search-path '("~/.emacs.d/projects/"))
+
 ;; dashboard setting
 (straight-use-package 'dashboard)
 (use-package dashboard
@@ -323,12 +334,6 @@
     (after-init . dashboard-setup-startup-hook)
     :config
 )
-
-;; projectile setting
-(straight-use-package 'projectile)
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; neotree setting
 (straight-use-package 'neotree)
