@@ -39,10 +39,10 @@
 ;; Remove toolbar
 (tool-bar-mode -1)
 
-;; Rmove scrollbar
+;; Remove scroll bar
 (scroll-bar-mode -1)
 
-;; displayN the number of columns
+;; display the number of columns
 (column-number-mode t)
 
 ;; Stop blinking the cursor
@@ -169,8 +169,10 @@
 
 ;; company setting
 (straight-use-package 'company)
-(global-company-mode)
-(global-company-mode)
+(use-package company
+  :config
+  (global-company-mode)
+  (push 'company-lsp company-backends))
 (setq company-transformers '(company-sort-by-backend-importance))
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 3)
@@ -204,11 +206,9 @@
 (eval-after-load "ispell"
  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 (straight-use-package 'flyspell)
-(use-package flyspell
-  :hook ((prog-mode . flyspell-prog-mode)
-         (yatex-mode . flyspell-mode)
-         (org-mode . flyspell-mode)
-         (text-mode . flyspell-mode)))
+(add-hook 'find-file-hook 'flyspell-mode)
+(add-hook 'find-file-hook 'flyspell-buffer)
+
 ;; whitespace setting
 (require 'whitespace)
 (setq whitespace-style '(
@@ -393,3 +393,44 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
+
+;; lsp setting
+(straight-use-package 'lsp-mode)
+(straight-use-package 'company-lsp)
+(straight-use-package 'lsp-ui)
+(use-package lsp-mode
+  :commands lsp)
+(use-package company-lsp)
+(use-package lsp-ui
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+
+;; php develop setting
+(straight-use-package 'php-mode)
+
+;; python develop setting
+(straight-use-package 'python-mode)
+(use-package python-mode
+  :config
+  (add-hook 'python-mode-hook #'lsp))
+
+;; haskell develop setting
+(straight-use-package 'haskell-mode)
+
+;; rust develop setting
+(straight-use-package 'rust-mode)
+
+;; web develop setting
+(straight-use-package 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-engines-alist
+'(("php"    . "\\.phtml\\'")
+  ("blade"  . "\\.blade\\.")))
