@@ -6,7 +6,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; trancate setting
+;; truncate setting
 (setq-default truncate-lines t)
 (setq-default truncate-partial-width-windows t)
 
@@ -391,8 +391,11 @@
 (straight-use-package 'counsel)
 (counsel-mode 1)
 (global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
+
+;; counsel-projectile setting
+(straight-use-package 'counsel-projectile)
+(use-package counsel-projectile)
 
 ;; lsp setting
 (straight-use-package 'lsp-mode)
@@ -404,7 +407,6 @@
 (use-package lsp-ui
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
 
 ;; php develop setting
 (straight-use-package 'php-mode)
