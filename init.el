@@ -208,6 +208,8 @@
 (straight-use-package 'flyspell)
 (add-hook 'find-file-hook 'flyspell-mode)
 (add-hook 'find-file-hook 'flyspell-buffer)
+(when (eq system-type 'darwin)
+  (setq ispell-program-name "/usr/local/bin/ispell"))
 
 ;; whitespace setting
 (require 'whitespace)
