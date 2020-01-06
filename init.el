@@ -287,10 +287,6 @@
                 (buffer-list))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
-;; treemacs setting
-(straight-use-package 'treemacs)
-(use-package treemacs)
-
 ;; paren setting
 (use-package paren
    :ensure nil
